@@ -1,8 +1,24 @@
+'use client';
+
+import { AttendanceRecord } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
+import { useEffect, useState } from 'react';
+import { getAttendanceHistory } from 'utils/attendance';
 import AttendanceCard from './AttendanceCard';
 
 const AttendanceView = () => {
+  const [history, setHistory] = useState<AttendanceRecord[]>([]);
+
+  const fetchData = async () => {
+    const data: AttendanceRecord[] = await getAttendanceHistory(101);
+    setHistory(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Card
       isBlurred
@@ -16,10 +32,9 @@ const AttendanceView = () => {
       <Spacer y={5} />
 
       <section className="flex justify-evenly content-center gap-4 flex-col md:flex-row flex-wrap">
-        <AttendanceCard />
-        <AttendanceCard />
-        <AttendanceCard />
-        <AttendanceCard />
+        {history.map(({ date, status }: AttendanceRecord, index: number) => (
+          <AttendanceCard date={new Date(date)} status={status} key={index} />
+        ))}
       </section>
     </Card>
   );

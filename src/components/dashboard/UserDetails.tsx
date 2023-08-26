@@ -2,8 +2,19 @@ import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
+import { checkAttendance, markAttendance } from 'utils/attendance';
 
-const UserDetails = () => {
+// For testing
+const userId = 101;
+const status = 1;
+
+const UserDetails = async () => {
+  const attendanceAlreadyMarked = await checkAttendance(userId);
+
+  const handleButton = async () => {
+    await markAttendance(userId, status);
+  };
+
   return (
     <Card
       isBlurred
@@ -38,7 +49,12 @@ const UserDetails = () => {
         <Spacer y={10} />
         <div className="flex justify-center flex-col gap-2">
           <h3 className="text-xl">Mark Attendance for today</h3>
-          <Button color="primary" variant="flat">
+          <Button
+            color="primary"
+            variant="flat"
+            onClick={handleButton}
+            isDisabled={attendanceAlreadyMarked}
+          >
             Mark
           </Button>
         </div>

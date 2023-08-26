@@ -3,19 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write . --ignore-unknown",
-    "json-server": "json-server --watch db.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev:db": "json-server --watch db.json --port 3001",
+    "dev:next": "next dev",
+    "dev": "concurrently pnpm:dev:*"
   },
   "lint-staged": {
     "**/*": "pnpm format"
   },
   "dependencies": {
     "@nextui-org/react": "^2.1.5",
+    "axios": "^1.4.0",
     "framer-motion": "^10.16.1",
     "json-server": "^0.17.3",
     "next": "13.4.19",
