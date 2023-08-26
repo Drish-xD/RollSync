@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar } from '@nextui-org/avatar';
+import { Avatar, AvatarIcon } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import { Link } from '@nextui-org/link';
@@ -38,26 +38,18 @@ const Header = () => {
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
-                isBordered
                 as="button"
-                className="transition-transform"
                 color="primary"
-                name="test"
+                className="text-white/50"
                 size="sm"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                icon={<AvatarIcon />}
               />
             </DropdownTrigger>
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownItem key="profile" className="h-14 gap-2">
-                <p className="font-semibold">Signed in as</p>
-                <p className="font-semibold">ab1234@srmist.edu.in</p>
+            <DropdownMenu variant="flat" aria-label="Profile Menu" title="ppcmd">
+              <DropdownItem key="Profile">
+                <NextLink href="/profile">My Profile</NextLink>
               </DropdownItem>
-              <DropdownItem key="settings">
-                <Link as={NextLink} href="/profile">
-                  My Profile
-                </Link>
-              </DropdownItem>
-              <DropdownItem key="logout" color="danger">
+              <DropdownItem color="danger" key="Logout">
                 <Button onClick={logout}>Log Out</Button>
               </DropdownItem>
             </DropdownMenu>
