@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# lock files
+package-lock.json
+yarn.lock
