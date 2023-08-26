@@ -1,3 +1,5 @@
+'use client';
+
 import { Checkbox, Input, Link, Spacer } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { RefObject, useState } from 'react';
