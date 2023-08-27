@@ -3,6 +3,7 @@
 import { AttendanceRecord } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
+import { getCookie } from 'cookies-next';
 import { useEffect, useState } from 'react';
 import { getAttendanceHistory } from 'utils/attendance';
 import AttendanceCard from './AttendanceCard';
@@ -10,14 +11,18 @@ import AttendanceCard from './AttendanceCard';
 const AttendanceView = () => {
   const [history, setHistory] = useState<AttendanceRecord[]>([]);
 
+  const userId: number = Number(getCookie('user')?.toString());
+
   const fetchData = async () => {
-    const data: AttendanceRecord[] = await getAttendanceHistory(101);
+    const data: AttendanceRecord[] = await getAttendanceHistory(userId);
     setHistory(data);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  console.log(history);
 
   return (
     <Card
@@ -32,9 +37,13 @@ const AttendanceView = () => {
       <Spacer y={5} />
 
       <section className="flex justify-evenly content-center gap-4 flex-col md:flex-row flex-wrap">
-        {history.map(({ date, status }: AttendanceRecord, index: number) => (
-          <AttendanceCard date={new Date(date)} status={status} key={index} />
-        ))}
+        {history.length ? (
+          history.map(({ date, status }: AttendanceRecord, index: number) => (
+            <AttendanceCard date={new Date(date)} status={status} key={index} />
+          ))
+        ) : (
+          <h2>No Attendance History </h2>
+        )}
       </section>
     </Card>
   );

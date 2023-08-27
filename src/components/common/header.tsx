@@ -23,7 +23,7 @@ const Header = () => {
       <NavbarContent justify="end">
         {!isLoggedIn ? (
           <>
-            <NavbarItem className="hidden lg:flex">
+            <NavbarItem>
               <Link color="foreground" href="/auth/login" as={NextLink}>
                 Login
               </Link>

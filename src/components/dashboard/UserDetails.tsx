@@ -3,19 +3,18 @@ import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
+import { getCookie } from 'cookies-next';
 import { checkAttendance, markAttendance } from 'utils/attendance';
 import { getUserDetails } from 'utils/auth';
 
-// For testing
-const userId = 101;
-const status = 1;
-
 const UserDetails = async () => {
-  const attendanceAlreadyMarked = await checkAttendance(userId);
+  const userId: number = Number(getCookie('user')?.toString());
+
   const userDetails: UserType = await getUserDetails(userId);
+  const attendanceAlreadyMarked = await checkAttendance(userId);
 
   const handleButton = async () => {
-    await markAttendance(userId, status);
+    await markAttendance(userId, 1);
   };
 
   return (

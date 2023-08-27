@@ -2,9 +2,11 @@ import { Card } from '@nextui-org/card';
 import { Chip } from '@nextui-org/chip';
 import { Check, Clock, File, X } from 'react-feather';
 
-const statusLabels = ['Absent', 'Present', 'Leave'];
-const statusColors = ['danger', 'success', 'warning'];
-const statusIcon = [<X size={18} />, <Check size={18} />, <File size={15} />];
+const statusData = {
+  labels: ['Absent', 'Present', 'Leave'],
+  colors: ['danger', 'success', 'warning'],
+  icons: [<X size={18} />, <Check size={18} />, <File size={15} />]
+};
 
 const AttendanceCard = ({ date, status }: { date: Date; status: number }) => {
   return (
@@ -15,12 +17,12 @@ const AttendanceCard = ({ date, status }: { date: Date; status: number }) => {
         </Chip>
         <span>
           <Chip
-            startContent={statusIcon[status]}
+            startContent={statusData.icons[status]}
             size="sm"
             variant="faded"
-            color={statusColors[status] as 'danger' | 'success' | 'warning'}
+            color={statusData.colors[status] as 'danger' | 'success' | 'warning'}
           >
-            {statusLabels[status]}
+            {statusData.labels[status]}
           </Chip>
         </span>
       </div>

@@ -20,7 +20,7 @@ const Register = () => {
     const lname = formData.get('lname') as string;
     const class_ = Number(formData.get('class'));
     const section = formData.get('section') as string;
-    const email = formData.get('email') as string;
+    const email = formData.get('email') + '@srmist.edu.in';
     const password = formData.get('password') as string;
 
     if (!email && !password && !fname && !lname && !class_ && !section) return;
@@ -46,6 +46,7 @@ const Register = () => {
         shadow="sm"
       >
         <RegisterForm formRef={formRef} registerUser={registerUser} />
+        <p className="text-danger text-center pt-3">{errorMsg && errorMsg}</p>
       </Card>
       <Spacer y={4} />
       <p>

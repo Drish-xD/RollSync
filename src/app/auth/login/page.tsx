@@ -41,10 +41,10 @@ const Login = () => {
         shadow="sm"
       >
         <LoginForm formRef={formRef} />
-        <p className="text-danger text-center py-3">{errorMsg && errorMsg}</p>
         <Button fullWidth type="button" onClick={loginUser} color="success">
           Log in
         </Button>
+        <p className="text-danger text-center pt-3">{errorMsg && errorMsg}</p>
       </Card>
       <Spacer y={4} />
       <p>
