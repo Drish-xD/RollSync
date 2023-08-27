@@ -4,6 +4,8 @@ import { useAuth } from 'contexts/auth';
 import { useRouter } from 'next/navigation';
 import { useLayoutEffect } from 'react';
 
+// Profile Page to show user Data
+// TODO: Create User Profile Card
 const Profile = () => {
   const { isLoggedIn } = useAuth();
 

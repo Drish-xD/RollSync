@@ -8,6 +8,7 @@ import { checkAttendance, markAttendance } from 'utils/attendance';
 import { getUserDetails } from 'utils/auth';
 
 const UserDetails = async () => {
+  // get user: Id, details and mark attendance
   const userId: number = Number(getCookie('user')?.toString());
 
   const userDetails: UserType = await getUserDetails(userId);

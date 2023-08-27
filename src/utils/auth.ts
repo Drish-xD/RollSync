@@ -2,8 +2,10 @@ import { UserType } from '@/types';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 
+// baseURL for axios
 axios.defaults.baseURL = 'http://localhost:3001';
 
+// Async Function to login the student to the dashboard
 const loginAuth = async (email: string, password: string): Promise<boolean> => {
   try {
     const { data } = await axios.get('/users', {
@@ -15,6 +17,7 @@ const loginAuth = async (email: string, password: string): Promise<boolean> => {
 
     if (!data[0]) throw new Error('No user Found');
 
+    // set Cookie to userId
     setCookie('user', data[0].id);
     return true;
   } catch (error) {
@@ -22,6 +25,7 @@ const loginAuth = async (email: string, password: string): Promise<boolean> => {
   }
 };
 
+// Async Function to get details of student using id
 const getUserDetails = async (userId: number) => {
   const { data } = await axios.get('/users', {
     params: {
@@ -37,6 +41,7 @@ const getUserDetails = async (userId: number) => {
   return userDetails;
 };
 
+// Async Function to get register new user to db
 const registerAuth = async (data: UserType) => {
   const { data: existingUsers } = await axios.get('/users', {
     params: {

@@ -2,10 +2,11 @@ import { Card } from '@nextui-org/card';
 import { Chip } from '@nextui-org/chip';
 import { Check, Clock, File, X } from 'react-feather';
 
+// map data according to status
 const statusData = {
   labels: ['Absent', 'Present', 'Leave'],
   colors: ['danger', 'success', 'warning'],
-  icons: [<X size={18} />, <Check size={18} />, <File size={15} />]
+  icons: [<X key={0} size={18} />, <Check key={1} size={18} />, <File key={2} size={15} />]
 };
 
 const AttendanceCard = ({ date, status }: { date: Date; status: number }) => {

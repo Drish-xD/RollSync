@@ -12,6 +12,7 @@ const Dashboard = () => {
 
   const router = useRouter();
 
+  // If not loggedIn then goto '/' route
   useLayoutEffect(() => {
     if (!isLoggedIn) {
       const timeoutId = setTimeout(() => {

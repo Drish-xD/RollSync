@@ -7,6 +7,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createRef, useState } from 'react';
 
+// form ref to get data
 const formRef = createRef<HTMLFormElement>();
 
 const Login = () => {
@@ -14,6 +15,7 @@ const Login = () => {
   const { isLoggedIn, login } = useAuth();
   const [errorMsg, seterrorMsg] = useState('');
 
+  // Login User using credentials
   const loginUser = async () => {
     const formData = new FormData(formRef.current!);
     const email = formData.get('email') + '@srmist.edu.in';
@@ -29,6 +31,7 @@ const Login = () => {
     }
   };
 
+  // if loggedIn the goto dashboard
   if (isLoggedIn) router.push('/dashboard');
 
   return (

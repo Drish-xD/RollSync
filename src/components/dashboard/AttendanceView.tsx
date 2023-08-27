@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { getAttendanceHistory } from 'utils/attendance';
 import AttendanceCard from './AttendanceCard';
 
+// Student attendance history container
 const AttendanceView = () => {
   const [history, setHistory] = useState<AttendanceRecord[]>([]);
 
@@ -18,11 +19,10 @@ const AttendanceView = () => {
     setHistory(data);
   };
 
+  // fetch user history
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(history);
 
   return (
     <Card

@@ -6,7 +6,10 @@ import { RefObject, useState } from 'react';
 import { Eye, EyeOff } from 'react-feather';
 
 export default function LoginForm({ formRef }: { formRef: RefObject<HTMLFormElement> }) {
+  // state for password show / hide
   const [isVisible, setIsVisible] = useState(false);
+
+  // check validation of data
   const [valid, setValid] = useState<{ [key: string]: boolean | undefined }>({
     email: undefined,
     password: undefined

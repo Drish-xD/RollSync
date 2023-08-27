@@ -8,12 +8,14 @@ import { useRouter } from 'next/navigation';
 import { createRef, useState } from 'react';
 import { registerAuth } from 'utils/auth';
 
+// form ref to get data
 const formRef = createRef<HTMLFormElement>();
 
 const Register = () => {
   const router = useRouter();
   const [errorMsg, seterrorMsg] = useState('');
 
+  // function to register new user
   const registerUser = async () => {
     const formData = new FormData(formRef.current!);
     const fname = formData.get('fname') as string;

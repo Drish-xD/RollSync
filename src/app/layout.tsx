@@ -5,8 +5,10 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Provider } from './provider';
 
+// google font
 const inter = Inter({ subsets: ['latin'] });
 
+// seo Data
 export const metadata: Metadata = {
   title: 'RollSync',
   description: 'Simplify Student Attendance Tracking'

@@ -14,7 +14,10 @@ export default function RegisterForm({
   formRef: RefObject<HTMLFormElement>;
   registerUser: () => void;
 }) {
+  // state for password show / hide
   const [isVisible, setIsVisible] = useState(false);
+
+  // check validation of data
   const [valid, setValid] = useState<{ [key: string]: boolean | undefined }>({
     email: undefined,
     password: undefined,
@@ -43,6 +46,7 @@ export default function RegisterForm({
     });
   };
 
+  // disable btn of not valid state
   const isDisabled =
     !valid.email ||
     !valid.password ||
