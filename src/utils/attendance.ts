@@ -1,7 +1,7 @@
 import type { AttendanceRecord } from '@/types';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_JSON_URL;
 
 // Async Function to get all the attendance details of a student
 const getAttendanceHistory = async (userId: number): Promise<AttendanceRecord[]> => {

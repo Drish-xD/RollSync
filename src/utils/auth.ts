@@ -3,7 +3,7 @@ import axios from 'axios';
 import { setCookie } from 'cookies-next';
 
 // baseURL for axios
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_JSON_URL;
 
 // Async Function to login the student to the dashboard
 const loginAuth = async (email: string, password: string): Promise<boolean> => {
