@@ -4,12 +4,13 @@ interface AttendanceRecord {
   status: number;
 }
 interface UserType {
-  user_id: number;
+  id?: number;
   fname: string;
   lname: string;
   class: number;
   section: string;
   email: string;
+  password?: string;
 }
 
 export type { AttendanceRecord, UserType };

@@ -1,20 +1,41 @@
 'use client';
 
 import { RegisterForm } from '@/components';
-import { Button, Card, Link, Spacer } from '@nextui-org/react';
+import { UserType } from '@/types';
+import { Card, Link, Spacer } from '@nextui-org/react';
 import NextLink from 'next/link';
-import { createRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { createRef, useState } from 'react';
+import { registerAuth } from 'utils/auth';
 
 const formRef = createRef<HTMLFormElement>();
 
-const registerUser = () => {
-  const formData = new FormData(formRef.current!);
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-  console.log({ email, password });
-};
-
 const Register = () => {
+  const router = useRouter();
+  const [errorMsg, seterrorMsg] = useState('');
+
+  const registerUser = async () => {
+    const formData = new FormData(formRef.current!);
+    const fname = formData.get('fname') as string;
+    const lname = formData.get('lname') as string;
+    const class_ = Number(formData.get('class'));
+    const section = formData.get('section') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    if (!email && !password && !fname && !lname && !class_ && !section) return;
+
+    const userData: UserType = { fname, lname, class: class_, section, email, password };
+
+    try {
+      await registerAuth(userData);
+
+      router.push('/auth/login');
+    } catch (error) {
+      if (error instanceof Error) seterrorMsg(error.message);
+    }
+  };
+
   return (
     <section className="relative h-screen flex justify-center items-center flex-col">
       <h2 className="text-5xl font-extrabold">Register Student</h2>
@@ -24,10 +45,7 @@ const Register = () => {
         className="relative bg-background/60 dark:bg-default-100/50 w-full max-w-[600px] px-3 py-5"
         shadow="sm"
       >
-        <RegisterForm formRef={formRef} />
-        <Button fullWidth type="button" onClick={registerUser} color="success">
-          Sign in
-        </Button>
+        <RegisterForm formRef={formRef} registerUser={registerUser} />
       </Card>
       <Spacer y={4} />
       <p>

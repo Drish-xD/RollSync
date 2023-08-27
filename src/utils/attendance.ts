@@ -29,7 +29,6 @@ const checkAttendance = async (userId: number): Promise<boolean> => {
 // mark the attendance for the today
 const markAttendance = async (userId: number, status: number): Promise<void> => {
   const today = new Date().toLocaleDateString();
-  console.log(today);
 
   if (await checkAttendance(userId)) return;
 
