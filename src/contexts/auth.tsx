@@ -1,10 +1,13 @@
 'use client';
+
+import { deleteCookie, hasCookie } from 'cookies-next';
 // Auth login here (login | register)
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
+import { loginAuth } from 'utils/auth';
 
 interface AuthContextType {
   isLoggedIn: boolean;
-  login: () => void;
+  login: (email: string, pass: string) => void;
   logout: () => void;
 }
 
@@ -17,13 +20,18 @@ interface AuthProviderProps {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = () => {
-    // Perform authentication logic here
+  useEffect(() => {
+    const storedUser = hasCookie('user');
+    if (storedUser) setIsLoggedIn(true);
+  }, []);
+
+  const login = async (email: string, pass: string) => {
+    await loginAuth(email, pass);
     setIsLoggedIn(true);
   };
 
   const logout = () => {
-    // Perform logout logic here
+    deleteCookie('user');
     setIsLoggedIn(false);
   };
 

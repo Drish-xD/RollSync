@@ -1,8 +1,10 @@
+import type { UserType } from '@/types';
 import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
 import { checkAttendance, markAttendance } from 'utils/attendance';
+import { getUserDetails } from 'utils/auth';
 
 // For testing
 const userId = 101;
@@ -10,6 +12,7 @@ const status = 1;
 
 const UserDetails = async () => {
   const attendanceAlreadyMarked = await checkAttendance(userId);
+  const userDetails: UserType = await getUserDetails(userId);
 
   const handleButton = async () => {
     await markAttendance(userId, status);
@@ -31,16 +34,16 @@ const UserDetails = async () => {
           <Avatar name="Jon doe" color="primary" className="w-20 h-20 text-large" />
           <Spacer x={5} />
           <div className="flex justify-center items-center md:items-start flex-col">
-            <h2 className="text-xl">Jon doe</h2>
+            <h2 className="text-xl">{`${userDetails.fname + ' ' + userDetails.lname}`}</h2>
             <Spacer y={4} />
             <div className="flex justify-evenly gap-10">
               <span>
                 <p className="font-extralight italic">Email</p>
-                <p>ab1234@srmist.edu.in</p>
+                <p>{userDetails.email}</p>
               </span>
               <span>
                 <p className="font-extralight italic">Class</p>
-                <p>4</p>
+                <p>{userDetails.class + userDetails.section}</p>
               </span>
             </div>
           </div>

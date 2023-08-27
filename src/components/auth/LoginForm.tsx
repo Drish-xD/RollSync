@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import { RefObject, useState } from 'react';
 import { Eye, EyeOff } from 'react-feather';
 
-export default function Form({ formRef }: { formRef: RefObject<HTMLFormElement> }) {
+export default function LoginForm({ formRef }: { formRef: RefObject<HTMLFormElement> }) {
   const [isVisible, setIsVisible] = useState(false);
   const [valid, setValid] = useState<{ [key: string]: boolean | undefined }>({
     email: undefined,

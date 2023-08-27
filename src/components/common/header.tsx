@@ -46,8 +46,15 @@ const Header = () => {
               />
             </DropdownTrigger>
             <DropdownMenu variant="flat" aria-label="Profile Menu" title="ppcmd">
+              <DropdownItem key="Dashboard">
+                <Link as={NextLink} href="/dashboard" className="block">
+                  Dashboard
+                </Link>
+              </DropdownItem>
               <DropdownItem key="Profile">
-                <NextLink href="/profile">My Profile</NextLink>
+                <Link as={NextLink} href="/profile" className="block">
+                  My Profile
+                </Link>
               </DropdownItem>
               <DropdownItem color="danger" key="Logout">
                 <Button onClick={logout}>Log Out</Button>

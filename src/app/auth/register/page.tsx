@@ -1,6 +1,6 @@
 'use client';
 
-import { Form } from '@/components';
+import { RegisterForm } from '@/components';
 import { Button, Card, Link, Spacer } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { createRef } from 'react';
@@ -24,7 +24,7 @@ const Register = () => {
         className="relative bg-background/60 dark:bg-default-100/50 w-full max-w-[600px] px-3 py-5"
         shadow="sm"
       >
-        <Form formRef={formRef} />
+        <RegisterForm formRef={formRef} />
         <Button fullWidth type="button" onClick={registerUser} color="success">
           Sign in
         </Button>
