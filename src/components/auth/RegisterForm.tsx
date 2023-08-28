@@ -1,6 +1,15 @@
 'use client';
 
-import { Button, Checkbox, Input, Link, Select, SelectItem, Spacer } from '@nextui-org/react';
+import {
+  Button,
+  Checkbox,
+  Input,
+  Link,
+  Select,
+  SelectItem,
+  Spacer,
+  Spinner
+} from '@nextui-org/react';
 import NextLink from 'next/link';
 
 import { RefObject, useState } from 'react';
@@ -9,10 +18,12 @@ import { classOptions, sectionOptions } from 'utils/options';
 
 export default function RegisterForm({
   formRef,
-  registerUser
+  registerUser,
+  loading
 }: {
   formRef: RefObject<HTMLFormElement>;
   registerUser: () => void;
+  loading: boolean;
 }) {
   // state for password show / hide
   const [isVisible, setIsVisible] = useState(false);
@@ -168,7 +179,7 @@ export default function RegisterForm({
         color="success"
         isDisabled={isDisabled}
       >
-        Sign in
+        {loading ? <Spinner /> : 'Sign Up'}
       </Button>
     </form>
   );

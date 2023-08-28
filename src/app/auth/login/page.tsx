@@ -1,7 +1,7 @@
 'use client';
 
 import { LoginForm } from '@/components';
-import { Button, Card, Link, Spacer } from '@nextui-org/react';
+import { Button, Card, Link, Spacer, Spinner } from '@nextui-org/react';
 import { useAuth } from 'contexts/auth';
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,7 @@ const Login = () => {
   const router = useRouter();
   const { isLoggedIn, login } = useAuth();
   const [errorMsg, seterrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Login User using credentials
   const loginUser = async () => {
@@ -24,19 +25,21 @@ const Login = () => {
     if (!email && !password) return;
 
     try {
+      setLoading(true);
       await login(email, password);
       router.push('/dashboard');
     } catch (error) {
       if (error instanceof Error) seterrorMsg(error.message);
     }
+    setLoading(false);
   };
 
   // if loggedIn the goto dashboard
   if (isLoggedIn) router.push('/dashboard');
 
   return (
-    <section className="relative h-screen flex justify-center items-center flex-col">
-      <h2 className="text-5xl font-extrabold">Login Student</h2>
+    <section className="relative min-h-[85dvh] flex justify-center items-center flex-col px-10">
+      <h2 className="text-5xl font-extrabold text-center">Login Student</h2>
       <Spacer y={10} />
       <Card
         isBlurred
@@ -45,7 +48,7 @@ const Login = () => {
       >
         <LoginForm formRef={formRef} />
         <Button fullWidth type="button" onClick={loginUser} color="success">
-          Log in
+          {loading ? <Spinner /> : 'Log in'}
         </Button>
         <p className="text-danger text-center pt-3">{errorMsg && errorMsg}</p>
       </Card>

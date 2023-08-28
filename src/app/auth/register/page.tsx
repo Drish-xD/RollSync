@@ -14,6 +14,7 @@ const formRef = createRef<HTMLFormElement>();
 const Register = () => {
   const router = useRouter();
   const [errorMsg, seterrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // function to register new user
   const registerUser = async () => {
@@ -30,24 +31,26 @@ const Register = () => {
     const userData: UserType = { fname, lname, class: class_, section, email, password };
 
     try {
+      setLoading(true);
       await registerAuth(userData);
 
       router.push('/auth/login');
     } catch (error) {
       if (error instanceof Error) seterrorMsg(error.message);
     }
+    setLoading(false);
   };
 
   return (
-    <section className="relative h-screen flex justify-center items-center flex-col">
-      <h2 className="text-5xl font-extrabold">Register Student</h2>
+    <section className="relative min-h-[85dvh] flex justify-center items-center flex-col px-10">
+      <h2 className="text-5xl font-extrabold text-center">Register Student</h2>
       <Spacer y={10} />
       <Card
         isBlurred
         className="relative bg-background/60 dark:bg-default-100/50 w-full max-w-[600px] px-3 py-5"
         shadow="sm"
       >
-        <RegisterForm formRef={formRef} registerUser={registerUser} />
+        <RegisterForm formRef={formRef} registerUser={registerUser} loading={loading} />
         <p className="text-danger text-center pt-3">{errorMsg && errorMsg}</p>
       </Card>
       <Spacer y={4} />
