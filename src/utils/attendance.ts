@@ -27,7 +27,7 @@ const checkAttendance = async (userId: number): Promise<boolean> => {
 };
 
 // mark the attendance for the today
-const markAttendance = async (userId: number, status: number): Promise<void> => {
+const markAttendance = async (userId: number): Promise<void> => {
   const today = new Date().toLocaleDateString();
 
   if (await checkAttendance(userId)) return;
@@ -35,7 +35,7 @@ const markAttendance = async (userId: number, status: number): Promise<void> => 
   const attendanceData = {
     user_id: userId,
     date: today,
-    status: status
+    status: 1
   };
 
   await axios.post('/attendance', attendanceData);

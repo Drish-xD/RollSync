@@ -1,29 +1,10 @@
-'use client';
-
 import { AttendanceRecord } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
-import { getCookie } from 'cookies-next';
-import { useEffect, useState } from 'react';
-import { getAttendanceHistory } from 'utils/attendance';
 import AttendanceCard from './AttendanceCard';
 
 // Student attendance history container
-const AttendanceView = () => {
-  const [history, setHistory] = useState<AttendanceRecord[]>([]);
-
-  const userId: number = Number(getCookie('user')?.toString());
-
-  const fetchData = async () => {
-    const data: AttendanceRecord[] = await getAttendanceHistory(userId);
-    setHistory(data);
-  };
-
-  // fetch user history
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const AttendanceView = ({ history }: { history: AttendanceRecord[] }) => {
   return (
     <Card
       isBlurred

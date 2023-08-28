@@ -4,19 +4,15 @@ import { Button } from '@nextui-org/button';
 import { Card } from '@nextui-org/card';
 import { Spacer } from '@nextui-org/spacer';
 import { getCookie } from 'cookies-next';
-import { checkAttendance, markAttendance } from 'utils/attendance';
+import { checkAttendance } from 'utils/attendance';
 import { getUserDetails } from 'utils/auth';
 
-const UserDetails = async () => {
+const UserDetails = async ({ handleAttendance }: { handleAttendance: () => Promise<void> }) => {
   // get user: Id, details and mark attendance
   const userId: number = Number(getCookie('user')?.toString());
 
   const userDetails: UserType = await getUserDetails(userId);
   const attendanceAlreadyMarked = await checkAttendance(userId);
-
-  const handleButton = async () => {
-    await markAttendance(userId, 1);
-  };
 
   return (
     <Card
@@ -55,10 +51,10 @@ const UserDetails = async () => {
           <Button
             color="primary"
             variant="flat"
-            onClick={handleButton}
+            onClick={handleAttendance}
             isDisabled={attendanceAlreadyMarked}
           >
-            Mark
+            {attendanceAlreadyMarked ? 'Marked' : 'Mark'}
           </Button>
         </div>
       </section>
