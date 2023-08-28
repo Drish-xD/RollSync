@@ -17,31 +17,34 @@
 ## Project File Structure
 
 ```
-src
-|__ app
-|   |__ (dashboard)
-|   |   |__ /dashboard
-|   |   |__ /profile
-|   |__ auth
-|   |   |__ /login
-|   |   |__ /register
-|   |__ layout
-|   |__ /
-|
-|__ components
-|
-|__ context
-|   |__ AuthContext
-|
-|__ styles
-|
-|__ types
-|
-|__ utils
-|   |__ auth
-|   |__ attendance
-|
-db.json
+  src
+  |__ app
+  |   |__ (dashboard)
+  |   |   |__ /dashboard
+  |   |   |__ /profile
+  |   |
+  |   |__ auth
+  |   |   |__ /login
+  |   |   |__ /register
+  |   |
+  |   |__ layout
+  |   |
+  |   |__ /
+  |
+  |__ components
+  |
+  |__ context
+  |   |__ AuthContext
+  |
+  |__ styles
+  |
+  |__ types
+  |
+  |__ utils
+  |   |__ auth
+  |   |__ attendance
+  |
+  db.json
 ```
 
 ## How to Run application
@@ -57,3 +60,33 @@ db.json
 - Run the application
 
   `pnpm dev`
+
+---
+
+<details>
+  <summary><b>Some Test Login Users</b></summary>
+
+You can use the following test login credentials:
+
+- User 1
+
+  ```
+  email : jt1234@srmist.edu.in
+  pass  : test@123
+  ```
+
+- User 2
+
+  ```
+  email : rg1234@srmist.edu.in
+  pass  : test@123
+  ```
+
+- User 3
+
+  ```
+  email : cb1234@srmist.edu.in
+  pass  : test@123
+  ```
+
+</details>
